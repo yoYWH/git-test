@@ -7,29 +7,130 @@
   <title>Document</title>
 </head>
 <body>
-  <div>
-    <span>测试文字颜色</span>
-    <hr>
-    <span>测试文字颜色</span>
-    <div class="test">测试文字颜色</div>
+  <!-- css变量的用法 -->
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+  <ol>
+    <li>11</li>
+    <li>12</li>
+    <li>13</li>
+    <li>14</li>
+  </ol>
+  <div class="space"></div>
+  <h1>一、边框</h1>
+  <h2>1、半透明边框</h2>
+  <div class="d1">
+    这里可以看出背景会侵入到边框，平时看不出来，只有当边框为虚线时才看出
   </div>
+  <div class="d1 pd">
+    <p>只有当设置background-color属性值为padding-box才不会侵入到边框</p>
+    <p>属性值有三个: </p>
+    <p>padding-box 背景被裁剪到内边距区域。背景将延伸到内边距的外边缘，并且不会被内边距覆盖。</p>
+    <p>content-box 背景被裁剪到内容框的边界。背景将仅绘制在内容框内，不会延伸到边框或内边距。</p>
+    <p>border-box 背景被裁剪到边框框线的内部。背景将延伸到边框的外边缘，并且不会被边框覆盖。</p>
+  </div>
+  <div class="space"></div>
+  <h2>2、多层边框</h2>
+  <h3>1. box-shadow实现多层边框</h3>
+  <div class="d2"></div>
+  <p>box-shadow属性</p>
+  <b>box-shadow接受逗号分割的多个值</b>
+  <p>h-shadow：指定阴影水平偏移的长度。可以为负值表示向左偏移，正值表示向右偏移。</p>
+  <p>v-shadow：指定阴影垂直偏移的长度。可以为负值表示向上偏移，正值表示向下偏移。</p>
+  <p>blur：可选参数，指定阴影的模糊半径。值越大，阴影越模糊，值为 0 表示无模糊效果。</p>
+  <p>spread：可选参数，指定阴影的扩展大小。正值表示扩大阴影大小，负值表示缩小阴影大小。默认为 0，不扩展阴影。</p>
+  <p>color：可选参数，指定阴影的颜色。可以使用颜色值、十六进制码、RGB 值等。</p>
+  <p>inset：可选参数，用于指定阴影是否为内阴影。如果设置为 inset，阴影将出现在元素的内部。不设置或设置为其他值表示阴影在元素周围。</p>
+  <p>可以通过box-shadow属性设置多层外框，但是box-shadow实现的“边框”无法响应鼠标事件</p>
+  <p>但可以通过设置内嵌的box-shadow并设置相应宽的padding，来实现响应鼠标事件</p>
+  <p>而且阴影生成的边框不占据位置，不影响布局</p>
+  <div class="space"></div>
+  <h3>2. outline实现多层边框</h3>
+  <div class="demo d3"></div>
+  <p>当谈到 CSS 的 outline 属性时，它用于在元素周围创建一个轮廓线，类似于边框但不占据空间。outline 属性可以用于为元素添加视觉效果，突出显示元素或为交互提供反馈。</p>
+  <p>outline-color：可选参数，用于指定轮廓线的颜色。可以使用颜色值、十六进制码、RGB 值等。默认值为当前文字颜色。</p>
+  <p>outline-style：可选参数，用于指定轮廓线的样式。可以取值为 dotted（点线）、dashed（虚线）、solid（实线）和其他样式。默认值为 none。</p>
+  <p>outline-width：可选参数，用于指定轮廓线的宽度。可以取值为像素（px）、百分比（%）、thin、medium、thick 等。默认值为 medium。</p>
+  <div class="demo d4"></div>
+  <p>当谈到 CSS 的 outline-offset 属性时，它用于定义轮廓线与其相应元素的边缘之间的距离。</p>
+  <p>outline-offset的值可以是一个具体的长度值，比如像素（px）、百分比（%）等，并且可以是负数，内嵌到元素内部 上图就是</p>
+  <b>outline 需要注意的地方</b>
+  <p>它只适用于双层边框，不能接受逗号分割的多个值</p>
+  <p>它产生的边框可能在其他浏览器中暂时无法贴合具有圆角的元素，下面的div则表明chrome浏览器可以贴合</p>
+  <div class="demo d5"></div>
+  <div class="space"></div>
+  <h2>3、灵活的背景定位</h2>
   <style>
-    * {
-      /* color: red; */
+    .space {
+      width: 100%;
+      height: 40px;
     }
-    span {
-      /* color: red;i */
+    .demo {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+      margin-top: 30px;
+      margin-bottom: 30px;
     }
-    hr {
-      height: 0.1em;
-      background-color: currentColor;
+    ul {
+      --accent-color: red;
     }
-    .test  {
+    ol {
+      --accent-color:green;
+    }
+    li {
+      color: var(--accent-color)
+    }
+    div {
+      margin-bottom: 20px;
+    }
+    .d1{
+      width: 400px;
+      height: 400px;
+      border: 10px dashed darkcyan;
+      background-color: black;
+      color: aliceblue;
+    }
+    .pd {
+      background-clip: padding-box;
+      padding: 10px;
+    }
+    .d2 {
+      /* align-content: center; */
+      margin: 0 auto;
+      margin-top: 70px;
+      margin-bottom: 40px;
       width: 100px;
       height: 100px;
-      border: 3px solid hsla(0, 0%, 100%, 0.5);
-      /* background-color: hsla(210,100%,50%,.5); */
-      background: red;
+      border: 10px solid red;
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0px 0px 0px 10px  blue inset,0 0 0 20px green inset;
+    }
+    .d2:active {
+      box-shadow: none;
+
+    }
+    .d3 {
+      border: 10px solid #655;
+      background-color: yellowgreen;
+      outline: 10px deeppink solid;
+    }
+    .d4 {
+      background-color: grey;
+      border-radius: 10%;
+      outline: 2px white dashed;
+      outline-offset: -10px;
+    }
+    .d5 {
+      background-color: yellowgreen;  
+      outline: 5px solid red;
+      outline-offset: 5px;
+      border-radius: 10%;
     }
   </style>
 </body>
